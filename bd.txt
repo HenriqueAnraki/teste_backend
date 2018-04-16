@@ -1,0 +1,26 @@
+create database emails;
+
+use emails;
+
+create table email (
+	id int not null primary key auto_incrrement,
+	address char(20),
+	content text
+);
+
+create table user (
+	id int not null primary key auto_incrrement,
+	name char(15),
+	emailAddress char(20)
+);
+
+create table emailuser (
+	CONSTRAINT `fk_emailuser_email`
+		FOREIGN KEY (emailid) REFERENCES email (id)
+		ON DELETE CASCADE
+		ON UPDATE RESTRICT,
+	CONSTRAINT `fk_emailuser_user`
+		FOREIGN KEY (userid) REFERENCES user (id)
+		ON DELETE CASCADE
+		ON UPDATE RESTRICT
+);
